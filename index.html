@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>happy heart's mabby</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+    <style>
+    body {
+        background-color: #ffccd5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        flex-direction: column;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    .header {
+        font-family: 'Pacifico', cursive;
+        font-size: clamp(22px, 6vw, 42px);
+        color: #f82b92;
+        position: absolute;
+        top: 20px;
+        text-align: center;
+        text-shadow: 2px 2px 5px #ffb6c1;
+        animation: bounce 2s infinite;
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .heart, .flower {
+        position: absolute;
+        font-size: 24px;
+        animation: float 6s infinite linear;
+        opacity: 0;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(100vh); opacity: 1; }
+        50% { opacity: 0.8; }
+        100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    .popup, .envelope-message {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        text-align: center;
+        display: none;
+        width: 90%;
+        max-width: 400px;
+        max-height: 80vh;
+        overflow-y: auto;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .popup button, .question button {
+        margin: 5px;
+        padding: 10px 15px;
+        background: #ff69b4;
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    .envelope {
+        width: 80%;
+        max-width: 200px;
+        height: 100px;
+        background: #ff66a3;
+        position: relative;
+        cursor: pointer;
+        text-align: center;
+        line-height: 100px;
+        font-size: 16px;
+        color: white;
+        border-radius: 12px;
+        display: none;
+    }
+
+    @media (max-width: 600px) {
+        .popup, .envelope-message {
+            font-size: 14px;
+            padding: 15px;
+        }
+
+        .envelope {
+            font-size: 14px;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <div class="header">Hii Mabby ko cutie 😻💖</div>
+    <div class="background"></div>
+    <!-- Background Music (Auto-plays & Loops) -->
+      <!-- Background Music -->
+    <audio id="bg-music" loop preload="auto">
+  <source src="music/ruthb.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const bgMusic = document.getElementById("bg-music");
+
+  function startMusic() {
+    bgMusic.play().then(() => {
+      console.log("Music started");
+    }).catch((error) => {
+      console.log("Autoplay blocked:", error);
+    });
+
+    document.removeEventListener("click", startMusic);
+  }
+
+  // Start music on first interaction
+  document.addEventListener("click", startMusic);
+</script>
+
+
+    <div class="popup" id="questionBox">
+        <p id="questionText">How much do you love me? ❤️</p>
+        <button onclick="nextQuestion(1)">More than the stars ✨</button>
+        <button onclick="nextQuestion(1)">Infinity and beyond 🚀</button>
+    </div>
+
+    <div class="envelope" id="envelope" onclick="openEnvelope()">
+        💌 Click to open
+    </div>
+
+    <div class="envelope-message" id="message">
+        <p>💖 Happy Heart's Day po, my mabbyy ko! 💖<br> <br>
+
+            Gusto ko lang sabihin sayo kung gaano kita kamahal sobra, lalong lalo na habang tumatagal tayo. Hindi nababawasan, hindi nag iiba. Mas lalo lang lumalalim araw araw.
+
+        Ikaw yung comfort ko. Ikaw yung safe place ko. Kapag ikaw yung kausap ko o kasama ko, ang gaan ng pakiramdam ko. Parang kahit anong pagod o bigat ng araw, nawawala basta andiyan ka. Ikaw yung pahinga ko, ikaw yung tahanan ko and everything.
+
+        Ikaw din yung favorite person ko. Sa lahat. Wala nang iba. Ikaw yung una kong naiisip, ikaw yung gusto kong makasama, ikaw yung gusto kong kalaro, kwentuhan, yakapin, at sabihan ng “mahal kita” nang paulit ulit.
+
+        Lahat ng ginagawa mo para sakin, lahat ng efforts mo napapansin ko. Sobrang na aappreciate ko. At sa totoo lang, mas lalo lang akong naiinlove sayo dahil doon. Mas lalo akong nahuhulog sayo araw-araw, mahaal kita palagi araw-araw. Mahal na mahaal kita sobra hanggang dulo na tayo my mabby ko forever.
+
+        Sigurado ako sayo. Sigurado ako sa atin. Pipiliin kita palagi sa lahat ng araw at taon at decades na darating, mamahalin kita palagi ikaw lang, akin ka lang at sayo lang ako at tayo lang.
+
+        <br>Mahal na mahal kita. Forever. Endlessly. 💝💜 <br><br>
+            
+            - mabbyy </p>
+    </div>
+
+    <script>
+        function createFloatingElements() {
+            for (let i = 0; i < 20; i++) {
+                const element = document.createElement('div');
+                element.classList.add(Math.random() > 0.5 ? 'heart' : 'flower');
+                element.innerHTML = Math.random() > 0.5 ? '❤️' : '🌸';
+                element.style.left = Math.random() * 100 + "vw";
+                element.style.bottom = "-10vh";
+                element.style.fontSize = Math.random() * 20 + 20 + "px";
+                element.style.animationDuration = Math.random() * 4 + 3 + "s";
+                document.querySelector('.background').appendChild(element);
+            }
+        }
+        createFloatingElements();
+
+        let questionIndex = 0;
+        const questions = [
+            { text: "How much do you love me? ❤️", options: ["More than the stars ✨", "Infinity and beyond 🚀"] },
+            { text: "What’s your favorite thing about me? 💕", options: ["Your kindness 😊", "Yung pagiging cutie ko 😍"] },
+            { text: "If we could travel anywhere, where would we go? ✈️", options: ["Paris 🇫🇷", "Japan 🇯🇵"] },
+            { text: "What’s the best thing about our love? 💖", options: ["We never give up 💪", "We're always happy together 😊"] },
+            { text: "What’s your favorite moment with me? 😍", options: ["Our late-night talks 🌙", "Every time you smile at me 😊"] },
+            { text: "What’s one promise you’ll always keep for me? 💍", options: ["I’ll always love you ❤️", "I’ll always be by your side 🤝"] },
+            { text: "Here’s your flowers! 🌸🌷🌹", options: ["Thank you my love 💖", "You're the best! 😘"] },
+            
+            
+        ];
+
+        function nextQuestion(index) {
+            if (index >= questions.length) {
+                document.getElementById("questionBox").style.display = "none";
+                document.getElementById("envelope").style.display = "block";
+            } else {
+                document.getElementById("questionText").innerText = questions[index].text;
+                const buttons = document.getElementById("questionBox").getElementsByTagName("button");
+                buttons[0].innerText = questions[index].options[0];
+                buttons[1].innerText = questions[index].options[1];
+                buttons[0].setAttribute("onclick", `nextQuestion(${index + 1})`);
+                buttons[1].setAttribute("onclick", `nextQuestion(${index + 1})`);
+            }
+        }
+
+        function openEnvelope() {
+            document.getElementById("envelope").style.display = "none";
+            document.getElementById("message").style.display = "block";
+        }
+
+        document.getElementById("questionBox").style.display = "block";
+
+        
+    </script>
+    
+</body>
+</html>
+
